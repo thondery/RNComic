@@ -1,14 +1,31 @@
 {
   "name": "RNComic",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "bundle-ios": "react-native bundle --platform ios --dev false --entry-file index.ios.js --bundle-output bundle/ios/index.ios.jsbundle --sourcemap-output bundle/ios/index.ios.jsbundle.map --assets-dest bundle/ios/res/",
+    "bundle-android": "react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output bundle/android/index.android.bundle --sourcemap-output bundle/android/index.android.bundle.map --assets-dest bundle/android/res/",
     "test": "jest"
   },
   "dependencies": {
+    "kn-react-native-router": "0.0.7",
+    "kn-react-native-views": "0.0.1",
+    "lodash": "^4.17.2",
+    "query-string": "^4.2.3",
     "react": "15.3.2",
-    "react-native": "0.37.0"
+    "react-native": "0.37.0",
+    "react-native-animatable": "^1.1.0",
+    "react-native-code-push": "^1.16.0-beta",
+    "react-native-countdown": "0.0.3",
+    "react-native-scrollable-tab-view": "^0.7.0",
+    "react-native-side-menu": "^0.20.1",
+    "react-native-vector-icons": "^2.1.0",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0",
+    "whatwg-fetch": "^2.0.1"
   },
   "jest": {
     "preset": "jest-react-native"
