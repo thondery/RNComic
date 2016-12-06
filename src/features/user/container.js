@@ -5,8 +5,7 @@ import {
   View, 
   Text,
   ScrollView,
-  TouchableOpacity,
-  TouchableHighlight
+  TouchableOpacity
 } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -20,7 +19,25 @@ class UserContainer extends Component {
 
   renderHeaderComponent () {
     let { auth, Router } = this.props
-    return (
+    return auth ? (
+      <View style={styles.headerView}>
+        <View style={styles.headerLeftView}>
+          <View style={styles.avatarView}>
+            <Icon name={'drupal'} 
+                  size={54}
+                  color={'#999'} 
+                  style={{backgroundColor: 'transparent'}} />
+          </View>
+          <Text style={styles.tipsTextStyle}>{auth.username}</Text>
+        </View>
+        <View style={styles.headerRightView}>
+          <Button style={styles.reportButtonStyle}
+                  label={'签到'}
+                  labelStyle={styles.reportButtonTextStyle}
+                  />
+        </View>
+      </View>
+    ) : (
       <TouchableOpacity style={styles.headerView}
                         onPress={() => Router.push('login', '登录')}>
         <View style={styles.headerLeftView}>
@@ -43,6 +60,7 @@ class UserContainer extends Component {
   }
 
   render () {
+    let { Router } = this.props
     let optons = [
       [
         {
@@ -89,7 +107,7 @@ class UserContainer extends Component {
           icon: 'cog',
           note: '',
           hot: false,
-          onPress: () => null
+          onPress: () => Router.push('setting', '设置')
         }
       ]
     ]
@@ -98,7 +116,7 @@ class UserContainer extends Component {
         {this.renderHeaderComponent()}
         {optons.map( (item, i) => {
           return (
-            <List key={i} options={item}/>
+            <List key={i} options={item} />
           )
         })}
         

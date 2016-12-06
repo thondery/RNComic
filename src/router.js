@@ -10,6 +10,7 @@ export const NAVIGATOR_NAME_HOME                = types.NAVIGATOR_NAME_HOME
 export const NAVIGATOR_NAME_USER                = 'NAVIGATOR_NAME_USER'
 export const NAVIGATOR_NAME_SEARCH              = 'NAVIGATOR_NAME_SEARCH'
 export const NAVIGATOR_NAME_SHELF               = 'NAVIGATOR_NAME_SHELF'
+export const NAVIGATOR_NAME_SETTING             = 'NAVIGATOR_NAME_SETTING'
 
 export const navigationState = {
   [NAVIGATOR_NAME_ROOT]: {
@@ -53,4 +54,11 @@ export const navigationState = {
       title: '书架'
     }]
   },
+  [NAVIGATOR_NAME_SETTING]: {
+    index: 0,
+    routes: [{
+      key: 'SettingPage',
+      title: '设置'
+    }]
+  }
 }

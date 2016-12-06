@@ -3,6 +3,7 @@
 import * as types from './constant'
 import * as httpService from '../services/http'
 import * as storageService from '../services/storage'
+import { setToken } from '../services/token'
 import _ from 'lodash'
 
 export function isAccessToken () {
@@ -74,5 +75,23 @@ export function register (info) {
         }
       }).catch(() => {})
     }, 500)
+  }
+}
+
+export function loginOut () {
+  return dispatch => {
+    dispatch(httpService.createAction(types.APPLICATION_USER_LOGINOUT_BEGIN, null))
+    return new Promise(async (resolve, reject) => {
+      try {
+        await storageService.removeItem('auth')
+        setToken(null)
+        dispatch(httpService.createAction(types.APPLICATION_USER_LOGINOUT_SUCCESS, null))
+        resolve(null)
+      }
+      catch (err) {
+        dispatch(httpService.createAction(types.APPLICATION_USER_LOGINOUT_FAILURE, err))
+        reject(err)
+      }
+    }).catch(() => {})
   }
 }

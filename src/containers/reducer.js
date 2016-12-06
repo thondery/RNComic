@@ -11,6 +11,8 @@ const initState = {
   loginError: null,
   registerPending: false,
   registerError: null,
+  loginOutPending: false,
+  loginOutError: null,
   auth: null
 }
 
@@ -104,6 +106,28 @@ const Root = (state = initState, action) => {
         ...state,
         registerError: error,
         registerPending: false
+      }
+    }
+    case types.APPLICATION_USER_LOGINOUT_BEGIN: {
+      return {
+        ...state,
+        loginOutError: null,
+        loginOutPending: true
+      }
+    }
+    case types.APPLICATION_USER_LOGINOUT_SUCCESS: {
+      return {
+        ...state,
+        loginOutError: null,
+        loginOutPending: false,
+        auth: null
+      }
+    }
+    case types.APPLICATION_USER_LOGINOUT_FAILURE: {
+      return {
+        ...state,
+        loginOutError: error,
+        loginOutPending: false
       }
     }
     default: {

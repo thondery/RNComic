@@ -9,7 +9,7 @@ import {
 } from 'kn-react-native-router'
 import * as types from '../../router'
 import UserContainer from './container'
-//import RightMenu from '../rightmenu'
+import RightMenu from './rightmenu'
 
 const { 
   navigationPop,
@@ -24,12 +24,12 @@ class UserNavigator extends MainNavigator {
     this.container = UserContainer
   }
 
-  /*renderRightComponent(sceneProps) {
+  renderRightComponent(sceneProps) {
     let route = sceneProps.scene.route
     return (
       <RightMenu Router={this.Router} />
     )
-  }*/
+  }
 
 }
 
