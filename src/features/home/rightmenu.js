@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import styles, { width, height } from './style'
+import styles, { width, height } from './rightmenu.style'
 
 export default class RightMenu extends Component {
 
@@ -16,12 +16,8 @@ export default class RightMenu extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.buttonStyle}
-                          onPress={() => null} >
-          <Icon name={'wrench'} size={24} color={'#999'} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle}
-                          onPress={() => Router.push('login', '登录')} >
-          <Icon name={'cog'} size={24} color={'#999'} />
+                          onPress={() => Router.push('search', '搜索')} >
+          <Icon name={'search'} size={24} color={'#f60'} />
         </TouchableOpacity>
       </View>
     )

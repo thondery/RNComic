@@ -13,7 +13,7 @@ import styles, { width, height } from './style'
 import ClassifyTabView from './classify'
 import DefaultTabView from './default'
 import TiaomanTabView from './tiaoman'
-import RightMenu from '../rightmenu'
+import RightMenu from './rightmenu'
 
 class HomeContainer extends Component {
 
