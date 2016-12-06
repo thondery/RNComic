@@ -1,6 +1,7 @@
 package com.rncomic;
 
 import com.facebook.react.ReactActivity;
+import com.react.rnspinkit.RNSpinkitPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.oblador.vectoricons.VectorIconsPackage;
 

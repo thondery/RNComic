@@ -37,7 +37,6 @@ class ClassifyTabView extends Component {
 
   render () {
     let { style } = this.props
-    console.log(this.state.isRefreshing)
     return (
       
       <ScrollView style={[styles.container, style]}

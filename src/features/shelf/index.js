@@ -8,19 +8,19 @@ import {
   actions
 } from 'kn-react-native-router'
 import * as types from '../../router'
-import HomeContainer from './container'
+import ShelfContainer from './container'
 
 const { 
   navigationPop,
   navigationPush
 } = actions
 
-class HomeNavigator extends MainNavigator {
+class ShelfNavigator extends MainNavigator {
 
   constructor(props) {
     super(props)
-    this.name = 'home'
-    this.container = HomeContainer
+    this.name = 'shelf'
+    this.container = ShelfContainer
     this.showHeader = false
   }
 
@@ -28,7 +28,7 @@ class HomeNavigator extends MainNavigator {
 
 function mapStateToProps(state) {
   return {
-    navigationState: state.navigation.navigationStates[types.NAVIGATOR_NAME_HOME]
+    navigationState: state.navigation.navigationStates[types.NAVIGATOR_NAME_SHELF]
   }
 }
 
@@ -36,4 +36,4 @@ export default connect(mapStateToProps, {
       navigationPop,
       navigationPush
     }
-  )(HomeNavigator)
+  )(ShelfNavigator)

@@ -40,3 +40,7 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+index.android.bundle
+index.android.bundle.meta
+node_modules_reactnative_libraries_customcomponents_navigationexperimental_assets_backicon.png
+android/app/src/main/assets/

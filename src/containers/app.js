@@ -13,7 +13,8 @@ import {
   HomeNavigator,
   UserNavigator,
   SearchNavigator,
-  LoginNavigator
+  LoginNavigator,
+  ShelfNavigator
 } from '../features'
 
 export default class App extends Component {
@@ -52,6 +53,12 @@ export default class App extends Component {
                  icon={() => <Icon name={'home'} size={20} color={'#666'} />}
                  selectIcon={() => <Icon name={'home'} size={20} color={'#f60'} />} 
                  component={HomeNavigator}
+                 />
+          <Route name={'shelf'}
+                 title={'书架'}
+                 icon={() => <Icon name={'leanpub'} size={20} color={'#666'} />}
+                 selectIcon={() => <Icon name={'leanpub'} size={20} color={'#f60'} />}
+                 component={ShelfNavigator}
                  />
           <Route name={'user'} 
                  title={'我的'}

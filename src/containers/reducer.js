@@ -7,6 +7,10 @@ import { setToken } from '../services/token'
 const initState = {
   isAccesstokenPending: false,
   isAccesstokenError: null,
+  loginPending: false,
+  loginError: null,
+  registerPending: false,
+  registerError: null,
   auth: null
 }
 
@@ -38,6 +42,68 @@ const Root = (state = initState, action) => {
         ...state,
         isAccesstokenError: error,
         isAccesstokenPending: false
+      }
+    }
+    case types.APPLICATION_USER_LOGIN_BEGIN: {
+      return {
+        ...state,
+        loginError: null,
+        loginPending: true
+      }
+    }
+    case types.APPLICATION_USER_LOGIN_SUCCESS: {
+      let auth = payload.code === 0 ? payload.data : null
+      let error = null
+      if (auth) {
+        storageService.setItem('auth', auth)
+        setToken(payload.data.token_key)
+      }
+      else {
+        error = payload
+      }
+      return {
+        ...state,
+        loginError: error,
+        loginPending: false,
+        auth: auth
+      }
+    }
+    case types.APPLICATION_USER_LOGIN_FAILURE: {
+      return {
+        ...state,
+        loginError: error,
+        loginPending: false
+      }
+    }
+    case types.APPLICATION_USER_REGISTER_BEGIN: {
+      return {
+        ...state,
+        registerError: null,
+        registerPending: true
+      }
+    }
+    case types.APPLICATION_USER_REGISTER_SUCCESS: {
+      let auth = payload.code === 0 ? payload.data : null
+      let error = null
+      if (auth) {
+        storageService.setItem('auth', auth)
+        setToken(payload.data.token_key)
+      }
+      else {
+        error = payload
+      }
+      return {
+        ...state,
+        registerError: error,
+        registerPending: false,
+        auth: auth
+      }
+    }
+    case types.APPLICATION_USER_REGISTER_FAILURE: {
+      return {
+        ...state,
+        registerError: error,
+        registerPending: false
       }
     }
     default: {

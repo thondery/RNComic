@@ -13,14 +13,13 @@ import styles, { width, height } from './style'
 import ClassifyTabView from './classify'
 import DefaultTabView from './default'
 import TiaomanTabView from './tiaoman'
+import RightMenu from '../rightmenu'
 
 class HomeContainer extends Component {
 
   renderRightComponent () {
     return (
-      <View>
-        <Text>ssss</Text>
-      </View>
+      <RightMenu {...this.props} />
     )
   }
 
