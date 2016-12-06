@@ -14,7 +14,7 @@ export function isAccessToken () {
         let res = await storageService.getItem('auth')
         let token = res && res.token_key || undefined
         let ret = await httpService.post('/accesstoken', {
-                    accesstoken: 'token'
+                    accesstoken: token
                   })
         if (_.isError(ret)) {
           throw ret

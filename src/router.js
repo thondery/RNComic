@@ -11,6 +11,7 @@ export const NAVIGATOR_NAME_USER                = 'NAVIGATOR_NAME_USER'
 export const NAVIGATOR_NAME_SEARCH              = 'NAVIGATOR_NAME_SEARCH'
 export const NAVIGATOR_NAME_SHELF               = 'NAVIGATOR_NAME_SHELF'
 export const NAVIGATOR_NAME_SETTING             = 'NAVIGATOR_NAME_SETTING'
+export const NAVIGATOR_NAME_ABOUT               = 'NAVIGATOR_NAME_ABOUT'
 
 export const navigationState = {
   [NAVIGATOR_NAME_ROOT]: {
@@ -59,6 +60,13 @@ export const navigationState = {
     routes: [{
       key: 'SettingPage',
       title: '设置'
+    }]
+  },
+  [NAVIGATOR_NAME_ABOUT]: {
+    index: 0,
+    routes: [{
+      key: 'AboutPage',
+      title: '关于我们'
     }]
   }
 }

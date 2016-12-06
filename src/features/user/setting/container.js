@@ -34,7 +34,7 @@ class SettingContainer extends Component {
         },
         {
           name: '关于我们',
-          onPress: () => null
+          onPress: () => Router.push('about', '关于我们')
         }
       ]
     ]

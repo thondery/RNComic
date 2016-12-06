@@ -2,7 +2,8 @@
 
 export default {
   name: 'YS-Comic',
-  version: '0.1.0',
+  softwareName: '鹰狮动漫',
+  version: '1.0.0',
   domain: 'http://106.14.26.233:7101',
 	apiPath: '/api/v1',
   imgPath: '',
