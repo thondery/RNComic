@@ -9,7 +9,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     width: width,
-    backgroundColor: '#F7F5EC'
+    //backgroundColor: '#F7F5EC'
   },
   headerViewStyle: {
     width: width,
