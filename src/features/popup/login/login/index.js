@@ -3,18 +3,19 @@
 import React, { Component } from 'react'
 import { 
   View, 
-  Text,
-  TouchableOpacity
+  Text
 } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import Toast from 'react-native-root-toast'
-import { Button } from 'kn-react-native-views'
+import { 
+  Button, 
+  Form, 
+  FormInput, 
+  Loading 
+} from 'kn-react-native-views'
 import * as actions from '../../../../containers/action'
-import FormInput from '../../../../components/formInput'
-import Form from '../../../../components/form'
-import Loading from '../../../../components/loading'
 import styles, { width, height } from './style'
 
 class LoginContainer extends Component {

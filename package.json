@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "kn-react-native-router": "0.0.7",
-    "kn-react-native-views": "0.0.3",
+    "kn-react-native-views": "0.0.4",
     "lodash": "^4.17.2",
     "query-string": "^4.2.3",
     "react": "15.3.2",

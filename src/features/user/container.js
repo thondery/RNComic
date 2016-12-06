@@ -10,10 +10,9 @@ import {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Button } from 'kn-react-native-views'
+import { Button, List } from 'kn-react-native-views'
 import * as actions from '../../containers/action'
 import styles, { width, height } from './style'
-import List from '../../components/list'
 
 class UserContainer extends Component {
 
