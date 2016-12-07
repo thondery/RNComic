@@ -22,6 +22,7 @@ class SearchNavigator extends PageNavigator {
       super(props)
       this.name = 'search'
       this.container = SearchContainer
+      this.showHeader = false
     }
 
 }
