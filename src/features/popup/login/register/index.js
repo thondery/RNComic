@@ -41,7 +41,7 @@ class RigisterContainer extends Component {
   }
 
   render () {
-    let { registerPending, registerError } = this.props
+    let { registerPending, registerError, Router } = this.props
     let options = [
       {
         type: 'forminput',
@@ -75,7 +75,10 @@ class RigisterContainer extends Component {
               disable={this.state.disable}
               buttonPress={this.buttonPressHandle.bind(this)} />
         <View style={styles.footerViewStyle}>
-          <Text />
+          <Button style={styles.footerButtonStyle}
+                  label={'取消'} 
+                  labelStyle={styles.footerButtonTextStyle}
+                  onPress={() => Router.pop()}/>
           <Button style={styles.footerButtonStyle}
                   label={'已有账号？马上登录'} 
                   labelStyle={styles.footerButtonTextStyle}

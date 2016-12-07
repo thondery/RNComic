@@ -7,6 +7,7 @@ import LoginNavigator from './popup/login'
 import ShelfNavigator from './shelf'
 import SettingNavigator from './user/setting'
 import AboutNavigator from './user/about'
+import BookNavigator from './popup/book'
 
 export {
   HomeNavigator,
@@ -15,5 +16,6 @@ export {
   LoginNavigator,
   ShelfNavigator,
   SettingNavigator,
-  AboutNavigator
+  AboutNavigator,
+  BookNavigator
 }

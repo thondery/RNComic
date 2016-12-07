@@ -123,10 +123,10 @@ class SearchContainer extends Component {
   }
 
   renderRow (data) {
-
+    let { Router } = this.props
     return (
       <RowItem data={data}
-               onPushByBook={() => null}
+               onPushByBook={id => Router.push(`book?id=${id}`)}
                onPushByChapter={() => null} />
     )
   }

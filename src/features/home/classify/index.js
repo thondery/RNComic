@@ -13,6 +13,7 @@ import { connect } from 'react-redux'
 import * as actions from '../action'
 import styles from './style'
 
+
 class ClassifyTabView extends Component {
 
   constructor(props){
@@ -25,6 +26,7 @@ class ClassifyTabView extends Component {
 
   componentDidMount () {
     this.props.actions.getClassifyList()
+    
   }
 
   renderRefreshControl () {

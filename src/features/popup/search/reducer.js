@@ -17,7 +17,7 @@ const initState = {
   clearHistory: false
 }
 
-const Home = (state = initState, action) => {
+const Search = (state = initState, action) => {
   let { payload, error } = action
   switch (action.type) {
     case types.SEARCH_BOOK_LIST_BEGIN: {
@@ -72,4 +72,4 @@ const Home = (state = initState, action) => {
   }
 }
 
-export default Home
+export default Search
