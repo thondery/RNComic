@@ -3,6 +3,7 @@
 import * as types from './constant'
 import * as httpService from '../../services/http'
 import * as storageService from '../../services/storage'
+import { getToken } from '../../services/token'
 import _ from 'lodash'
 
 export function openEditMode(isopen = true) {
@@ -69,6 +70,60 @@ export function getCollectList () {
         reject(err)
       }
     }).catch(() => {})
+  }
+}
+
+export function collect(book_id) {
+  return dispatch => {
+    dispatch(httpService.createAction(types.SHELF_COLLECT_ADD_BEGIN, null))
+    return new Promise(async (resolve, reject) => {
+      try {
+        let token = getToken()
+        let ret = await httpService.post('/book/collect', {
+                    accesstoken: token,
+                    book_id: book_id,
+                  })
+        if (_.isError(ret)) {
+          throw ret
+        }
+        dispatch(httpService.createAction(types.SHELF_COLLECT_ADD_SUCCESS, ret))
+        resolve(ret)
+      }
+      catch (err) {
+        dispatch(httpService.createAction(types.SHELF_COLLECT_ADD_FAILURE, err))
+        reject(err)
+      }
+    }).catch(() => {})
+  }
+}
+
+export function reCollect(book_id) {
+  return dispatch => {
+    dispatch(httpService.createAction(types.SHELF_COLLECT_REMOVE_BEGIN, null))
+    return new Promise(async (resolve, reject) => {
+      try {
+        let token = getToken()
+        let ret = await httpService.post('/book/re_collect', {
+                    accesstoken: token,
+                    book_id: book_id,
+                  })
+        if (_.isError(ret)) {
+          throw ret
+        }
+        dispatch(httpService.createAction(types.SHELF_COLLECT_REMOVE_SUCCESS, ret))
+        resolve(ret)
+      }
+      catch (err) {
+        dispatch(httpService.createAction(types.SHELF_COLLECT_REMOVE_FAILURE, err))
+        reject(err)
+      }
+    }).catch(() => {})
+  }
+}
+
+export function collectInit() {
+  return dispatch => {
+    dispatch(httpService.createAction(types.SHELF_INIT_COLLECT_BOOK, null))
   }
 }
 

@@ -83,7 +83,7 @@ export default StyleSheet.create({
     width: width - 30,
     height: 70,
     borderBottomWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#ddd',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginLeft: 15,
@@ -104,7 +104,7 @@ export default StyleSheet.create({
     flex: 1,
     width: width - 30,
     marginLeft: 15,
-    height: height
+    //height: height
   },
   bodyTabBarStyle: {
     backgroundColor: 'transparent',

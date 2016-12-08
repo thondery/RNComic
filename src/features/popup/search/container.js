@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { 
   View, 
   Text,
+  ScrollView,
   ListView,
   TouchableOpacity
 } from 'react-native'
@@ -51,9 +52,9 @@ class SearchContainer extends Component {
                    onChangeText={this.onChangeTextHandle.bind(this)}
                    />
         {this.state.searchHistory.length > 0 ? (
-          <View style={styles.bodyerView}>
+          <ScrollView style={styles.bodyerView}>
             {this.renderHistoryComponent()}
-          </View>
+          </ScrollView>
         ) : (
           <View style={styles.bodyerView}>
             <ListView enableEmptySections

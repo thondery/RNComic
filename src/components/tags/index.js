@@ -28,7 +28,6 @@ export default class Tags extends Component {
 
   render () {
     let { style, tagsData } = this.props
-    console.log(this.props)
     return (
       <View style={[styles.container, style]}>
         {

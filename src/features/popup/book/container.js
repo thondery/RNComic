@@ -36,14 +36,26 @@ class BookContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    let { getBookError } = nextProps
+    let { getBookError, auth, useCollect } = nextProps
+    let { Router } = this.props
+    let { query } = Router
     if (getBookError) {
       this.showToast(_.isError(getBookError) ? '无法连接到服务器，请稍后再试' : getBookError.message)
     }
+    if (auth && !this.props.auth) {
+      this.props.actions.getBook(query.id)
+    }
+    if (useCollect !== -1 && this.props.useCollect !== useCollect) {
+      this.showToast(useCollect === 1 ? '收藏成功，书架可以查看哦～' : '已从我的书架移除')
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.actions.collectInit()
   }
 
   render () {
-    let { classType, getBookPending, getBookError, getBookData, bookCollect, bookReadrec, Router } = this.props
+    let { classType, getBookPending, getBookError, getBookData, bookCollect, useCollect, bookReadrec, Router } = this.props
     if (getBookPending || getBookError) {
       return (
         <View style={styles.container}>
@@ -55,8 +67,9 @@ class BookContainer extends Component {
       case 0: {
         return (
           <DefaultContainer bookData={getBookData}
-                            collect={bookCollect}
+                            collect={useCollect === -1 ? bookCollect : useCollect}
                             readrec={bookReadrec}
+                            onCollect={this.onCollectHandle.bind(this)}
                             Router={Router} />
         )
       }
@@ -65,6 +78,21 @@ class BookContainer extends Component {
       }
       default: {
         return null
+      }
+    }
+  }
+
+  onCollectHandle (isCollect) {
+    let { auth, Router, getBookData } = this.props
+    if (!auth) {
+      Router.push('login', '登录')
+    }
+    else {
+      if (isCollect) {
+        this.props.actions.collect(getBookData._id)
+      }
+      else {
+        this.props.actions.reCollect(getBookData._id)
       }
     }
   }
@@ -98,8 +126,10 @@ function mapStateToProps (state) {
     getBookError: state.Book.getBookError,
     getBookData: state.Book.getBookData,
     bookCollect: state.Book.bookCollect,
+    useCollect: state.Shelf.useCollect,
     bookReadrec: state.Book.bookReadrec,
-    classType: state.Book.classType
+    classType: state.Book.classType,
+    auth: state.Root.auth
   }
 }
 

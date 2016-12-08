@@ -11,6 +11,9 @@ const initState = {
   readrecListPending: false,
   readrecListError: null,
   readrecList: null,
+  collectPending: false,
+  collectError: null,
+  useCollect: -1,
   editState: {
     tabLabel: 'collect',
     isOpen: false,
@@ -65,6 +68,58 @@ const Shelf = (state = initState, action) => {
         ...state,
         collectListPending: false,
         collectListError: error
+      }
+    }
+    case types.SHELF_COLLECT_ADD_BEGIN: {
+      return {
+        ...state,
+        collectPending: true,
+        collectError: null
+      }
+    }
+    case types.SHELF_COLLECT_ADD_SUCCESS: {
+      return {
+        ...state,
+        collectPending: false,
+        collectError: null,
+        useCollect: 1
+      }
+    }
+    case types.SHELF_COLLECT_ADD_FAILURE: {
+      return {
+        ...state,
+        collectPending: false,
+        collectError: null
+      }
+    }
+    case types.SHELF_COLLECT_REMOVE_BEGIN: {
+      return {
+        ...state,
+        collectPending: true,
+        collectError: null
+      }
+    }
+    case types.SHELF_COLLECT_REMOVE_SUCCESS: {
+      return {
+        ...state,
+        collectPending: false,
+        collectError: null,
+        useCollect: 0
+      }
+    }
+    case types.SHELF_COLLECT_REMOVE_FAILURE: {
+      return {
+        ...state,
+        collectPending: false,
+        collectError: null
+      }
+    }
+    case types.SHELF_INIT_COLLECT_BOOK: {
+      return {
+        ...state,
+        collectPending: false,
+        collectError: null,
+        useCollect: -1
       }
     }
     default: {

@@ -5,6 +5,11 @@ import * as httpService from '../../../services/http'
 import * as storageService from '../../../services/storage'
 import { getToken } from '../../../services/token'
 import _ from 'lodash'
+import * as shelfActions from '../../shelf/action'
+
+export const collectInit = shelfActions.collectInit
+export const collect = shelfActions.collect
+export const reCollect = shelfActions.reCollect
 
 export function getBook (book_id) {
   return dispatch => {

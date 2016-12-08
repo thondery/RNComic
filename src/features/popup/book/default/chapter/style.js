@@ -8,6 +8,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     width: width - 30,
+    minHeight: height
     //justifyContent: 'center',
     //backgroundColor: '#F7F5EC'
   },

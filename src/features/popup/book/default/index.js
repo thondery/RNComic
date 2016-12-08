@@ -40,7 +40,7 @@ const initBookData = {
 export default class DefaultContainer extends Component {
 
   renderHeader () {
-    let { Router, collect, bookData } = this.props
+    let { Router, collect, bookData, onCollect } = this.props
     bookData = {...initBookData, ...bookData}
     return (
       <Image source={require('../../../../assets/images/2.jpg')}
@@ -55,7 +55,7 @@ export default class DefaultContainer extends Component {
           </TouchableOpacity>
           <View style={styles.headerTopbarRightStyle}>
             <TouchableOpacity style={styles.goBackButtonStyle}
-                            onPress={() => Router.pop() }>
+                            onPress={() => onCollect(collect !== 1) }>
               <Icon name={collect === 1 ? 'heart' : 'heart-o'} size={24} color={'#f60'} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.goBackButtonStyle}
@@ -113,7 +113,10 @@ export default class DefaultContainer extends Component {
                          renderTabBar={() => this.renderScrollableTabBar()}
                          >
         <DetailTabView tabLabel={'详情'}
-                       />
+                       author={bookData.author}
+                       content={bookData.content}
+                       tags={bookData.tags}
+                       updateAt={bookData.update_at} />
         <ChapterTabView tabLabel={'目录'}
                         chapters={bookData.chapters}
                         readrec={readrec}

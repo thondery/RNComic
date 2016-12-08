@@ -104,8 +104,9 @@ export default class ChapterTabView extends Component {
   }
 
   render () {
+    let _View
     return (
-      <View style={styles.container}>
+      <View style={styles.container} >
         {this.renderHeader()}
         {this.renderBody()}
         {this.renderFooter()}

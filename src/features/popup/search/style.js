@@ -13,7 +13,7 @@ export default StyleSheet.create({
   },
   bodyerView: {
     //backgroundColor: '#666',
-    alignItems: 'center',
+    //alignItems: 'center',
     //justifyContent: 'center',
     width: width,
     height: height - 64
