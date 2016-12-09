@@ -128,7 +128,7 @@ class SearchContainer extends Component {
     return (
       <RowItem data={data}
                onPushByBook={id => Router.push(`book?id=${id}`)}
-               onPushByChapter={() => null} />
+               onPushByChapter={id => Router.push(`reader?id=${id}`)} />
     )
   }
 

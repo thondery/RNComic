@@ -8,6 +8,7 @@ import ShelfNavigator from './shelf'
 import SettingNavigator from './user/setting'
 import AboutNavigator from './user/about'
 import BookNavigator from './popup/book'
+import ReaderNavigator from './popup/reader'
 
 export {
   HomeNavigator,
@@ -17,5 +18,6 @@ export {
   ShelfNavigator,
   SettingNavigator,
   AboutNavigator,
-  BookNavigator
+  BookNavigator,
+  ReaderNavigator
 }

@@ -16,13 +16,15 @@ export default class ChapterTabView extends Component {
   static ropTypes = {
     chapters: PropTypes.array,
     readrec: PropTypes.object,
-    updateAt: PropTypes.string
+    updateAt: PropTypes.string,
+    onPushByChapter: PropTypes.func
   }
 
   static defaultProps = {
     chapters: [],
     readrec: null,
-    updateAt: ''
+    updateAt: '',
+    onPushByChapter: () => null
   }
 
   constructor(props) {
@@ -71,7 +73,7 @@ export default class ChapterTabView extends Component {
   }
 
   renderBody () {
-    let { chapters, readrec } = this.props
+    let { chapters, readrec, onPushByChapter } = this.props
     let { chapterList } = this.state
     return (
       <View style={styles.bodyViewStyle}>
@@ -82,7 +84,7 @@ export default class ChapterTabView extends Component {
                     style={[styles.chapterButtonStyle, i % 3 > 0 ? {marginLeft: 20} : null, nextRead ? styles.nextReadButtonStyle : null]}
                     label={item.chapter_tab.toString()} 
                     labelStyle={{color: nextRead ? '#fff' : '#666'}}
-                    onPress={() => null} />
+                    onPress={() => onPushByChapter(item._id)} />
           ) : null
         })}
       </View>

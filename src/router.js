@@ -13,6 +13,7 @@ export const NAVIGATOR_NAME_SHELF               = 'NAVIGATOR_NAME_SHELF'
 export const NAVIGATOR_NAME_SETTING             = 'NAVIGATOR_NAME_SETTING'
 export const NAVIGATOR_NAME_ABOUT               = 'NAVIGATOR_NAME_ABOUT'
 export const NAVIGATOR_NAME_BOOK                = 'NAVIGATOR_NAME_BOOK'
+export const NAVIGATOR_NAME_READER              = 'NAVIGATOR_NAME_READER'
 
 export const navigationState = {
   [NAVIGATOR_NAME_ROOT]: {
@@ -75,6 +76,13 @@ export const navigationState = {
     routes: [{
       key: 'BookPage',
       title: '图书'
+    }]
+  },
+  [NAVIGATOR_NAME_READER]: {
+    index: 0,
+    routes: [{
+      key: 'ReaderPage',
+      title: '阅读器'
     }]
   }
 }

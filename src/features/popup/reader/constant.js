@@ -1,0 +1,7 @@
+'use strict';
+
+export const READER_GET_INFO_BEGIN         = 'READER_GET_INFO_BEGIN'
+export const READER_GET_INFO_FAILURE       = 'READER_GET_INFO_FAILURE'
+export const READER_GET_INFO_SUCCESS       = 'READER_GET_INFO_SUCCESS'
+
+export const READER_GET_NETINFO            = 'READER_GET_NETINFO'

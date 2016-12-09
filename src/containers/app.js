@@ -17,7 +17,8 @@ import {
   ShelfNavigator,
   SettingNavigator,
   AboutNavigator,
-  BookNavigator
+  BookNavigator,
+  ReaderNavigator
 } from '../features'
 
 export default class App extends Component {
@@ -58,6 +59,9 @@ export default class App extends Component {
                />
         <Route name={'book'}
                component={BookNavigator}
+               />
+        <Route name={'reader'}
+               component={ReaderNavigator}
                />
         <TabRoute>
           <Route name={'home'} 

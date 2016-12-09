@@ -120,7 +120,8 @@ export default class DefaultContainer extends Component {
         <ChapterTabView tabLabel={'目录'}
                         chapters={bookData.chapters}
                         readrec={readrec}
-                        updateAt={bookData.update_at} />
+                        updateAt={bookData.update_at}
+                        onPushByChapter={chapter_id => Router.push(`reader?id=${chapter_id}`)} />
         <TopicTabView tabLabel={'话题'}
                       />
       </ScrollableTabView>
