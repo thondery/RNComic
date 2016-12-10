@@ -27,11 +27,21 @@ const Home = (state = initState, action) => {
       }
     }
     case types.HOME_CLASSIFY_LIST_SUCCESS: {
+      let error = null
+      let stateData = null
+      if (payload.code > 0) {
+        error = payload
+      }
+      else {
+        stateData = {
+          classifyList: payload.data
+        }
+      }
       return {
         ...state,
-        classifyListError: null,
+        classifyListError: error,
         classifyListPending: false,
-        classifyList: payload.data
+        ...stateData
       }
     }
     case types.HOME_CLASSIFY_LIST_FAILURE: {

@@ -35,6 +35,9 @@
 		B9CD308C98B746D088FBC3A9 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8F81D477A184F16966258CF /* libRNSpinkit.a */; };
 		CF42BF50B7574F8498FEA25E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C11DC738C684E448AB93897 /* Octicons.ttf */; };
 		EE47CCF3449B41BEB6B36695 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8A9891F90F4FA4B06E3527 /* Entypo.ttf */; };
+		F11139521DFBDD2400770435 /* res in Resources */ = {isa = PBXBuildFile; fileRef = F11139511DFBDD2300770435 /* res */; };
+		F11139561DFBDD4A00770435 /* index.ios.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = F11139531DFBDD4A00770435 /* index.ios.jsbundle */; };
+		F11139571DFBDD4A00770435 /* index.ios.jsbundle.meta in Resources */ = {isa = PBXBuildFile; fileRef = F11139551DFBDD4A00770435 /* index.ios.jsbundle.meta */; };
 		FFBCB31239EA4EFEA4A9197E /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A7CC963340349DF8381FEBF /* Ionicons.ttf */; };
 /* End PBXBuildFile section */
 
@@ -233,6 +236,10 @@
 		BB29F60DF0C84F309CA4C7C1 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		BECC8777775C48A89949194F /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		CF8A9891F90F4FA4B06E3527 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		F11139511DFBDD2300770435 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; name = res; path = ../bundle/ios/res; sourceTree = "<group>"; };
+		F11139531DFBDD4A00770435 /* index.ios.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.ios.jsbundle; path = ../bundle/ios/index.ios.jsbundle; sourceTree = "<group>"; };
+		F11139541DFBDD4A00770435 /* index.ios.jsbundle.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = index.ios.jsbundle.map; path = ../bundle/ios/index.ios.jsbundle.map; sourceTree = "<group>"; };
+		F11139551DFBDD4A00770435 /* index.ios.jsbundle.meta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.ios.jsbundle.meta; path = ../bundle/ios/index.ios.jsbundle.meta; sourceTree = "<group>"; };
 		FF7F0E85DBF549F8B5F2076C /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -352,6 +359,10 @@
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				F11139531DFBDD4A00770435 /* index.ios.jsbundle */,
+				F11139541DFBDD4A00770435 /* index.ios.jsbundle.map */,
+				F11139551DFBDD4A00770435 /* index.ios.jsbundle.meta */,
+				F11139511DFBDD2300770435 /* res */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -783,7 +794,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F11139561DFBDD4A00770435 /* index.ios.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				F11139521DFBDD2400770435 /* res in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				EE47CCF3449B41BEB6B36695 /* Entypo.ttf in Resources */,
 				18FFD055825244B282BADFE3 /* EvilIcons.ttf in Resources */,
@@ -792,6 +805,7 @@
 				FFBCB31239EA4EFEA4A9197E /* Ionicons.ttf in Resources */,
 				422A8EDB7C6B48E2AD5B0FD1 /* MaterialIcons.ttf in Resources */,
 				CF42BF50B7574F8498FEA25E /* Octicons.ttf in Resources */,
+				F11139571DFBDD4A00770435 /* index.ios.jsbundle.meta in Resources */,
 				3E587239011C4BBDB1AD4BEB /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -999,7 +1013,7 @@
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1043,7 +1057,7 @@
 					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1060,7 +1074,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNComic" */ = {
 			isa = XCConfigurationList;
@@ -1069,7 +1083,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "RNComic" */ = {
 			isa = XCConfigurationList;
@@ -1078,7 +1092,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
