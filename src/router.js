@@ -14,6 +14,9 @@ export const NAVIGATOR_NAME_SETTING             = 'NAVIGATOR_NAME_SETTING'
 export const NAVIGATOR_NAME_ABOUT               = 'NAVIGATOR_NAME_ABOUT'
 export const NAVIGATOR_NAME_BOOK                = 'NAVIGATOR_NAME_BOOK'
 export const NAVIGATOR_NAME_READER              = 'NAVIGATOR_NAME_READER'
+export const NAVIGATOR_NAME_CLASSIFY            = 'NAVIGATOR_NAME_CLASSIFY'
+export const NAVIGATOR_NAME_RANKING             = 'NAVIGATOR_NAME_RANKING'
+export const NAVIGATOR_NAME_RECOMMEND           = 'NAVIGATOR_NAME_RECOMMEND'
 
 export const navigationState = {
   [NAVIGATOR_NAME_ROOT]: {
@@ -84,5 +87,26 @@ export const navigationState = {
       key: 'ReaderPage',
       title: '阅读器'
     }]
-  }
+  },
+  [NAVIGATOR_NAME_CLASSIFY]: {
+    index: 0,
+    routes: [{
+      key: 'ClassifyPage',
+      title: '分类列表'
+    }]
+  },
+  [NAVIGATOR_NAME_RANKING]: {
+    index: 0,
+    routes: [{
+      key: 'RankingPage',
+      title: '排行榜'
+    }]
+  },
+  [NAVIGATOR_NAME_RECOMMEND]: {
+    index: 0,
+    routes: [{
+      key: 'RecommendPage',
+      title: '推荐列表'
+    }]
+  },
 }

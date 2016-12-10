@@ -9,6 +9,7 @@ import SettingNavigator from './user/setting'
 import AboutNavigator from './user/about'
 import BookNavigator from './popup/book'
 import ReaderNavigator from './popup/reader'
+import ClassifyNavigator from './popup/classify'
 
 export {
   HomeNavigator,
@@ -19,5 +20,6 @@ export {
   SettingNavigator,
   AboutNavigator,
   BookNavigator,
-  ReaderNavigator
+  ReaderNavigator,
+  ClassifyNavigator
 }

@@ -36,11 +36,12 @@ class HomeContainer extends Component {
   }
 
   render () {
+    let { Router } = this.props
     return (
       <ScrollableTabView style={styles.container}
                          initialPage={0}
                          renderTabBar={() => this.renderScrollableTabBar()}>
-        <ClassifyTabView tabLabel="分类" style={styles.tabView} />
+        <ClassifyTabView tabLabel="分类" style={styles.tabView} Router={Router} />
         <DefaultTabView tabLabel="推荐" style={styles.tabView}/>
         <ScrollView tabLabel="动画" style={styles.tabView}/>
         <TiaomanTabView tabLabel="条漫" style={styles.tabView}/>

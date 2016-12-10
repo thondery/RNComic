@@ -107,7 +107,7 @@ class ClassifyTabView extends Component {
           return (
             <TouchableOpacity key={i}
                               style={styles.classifyItemViewStyle}
-                              onPress={() => Router.push(`classify?id=${item._id}`, item.classname)} >
+                              onPress={() => Router.push(`classify?class_id=${item._id}&classtype=${item.classtype}`, item.classname)} >
               <Image source={getImage(item.class_img)} style={styles.classifyItemImageStyle} >
                 <Text style={styles.classifyItemNameStyle}>{item.classname}</Text>
               </Image>
