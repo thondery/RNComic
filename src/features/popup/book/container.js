@@ -65,13 +65,13 @@ class BookContainer extends Component {
     }
     switch (classType) {
       case 0: {
-        return (
+        return getBookData ? (
           <DefaultContainer bookData={getBookData}
                             collect={useCollect === -1 ? bookCollect : useCollect}
                             readrec={bookReadrec}
                             onCollect={this.onCollectHandle.bind(this)}
                             Router={Router} />
-        )
+        ) : null
       }
       case 1: {
         return null

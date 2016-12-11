@@ -95,12 +95,21 @@ export default class DefaultContainer extends Component {
                 label={'下载'}
                 onPress={() => null} />
         <Button style={styles.readRecButtonStyle}
-                label={readrec ?  `续看${readrec.chapter.chapter_tab}话` : '开始阅读'}
+                label={readrec && readrec.chapter ?  `续看${this.getReadrec()}话` : '开始阅读'}
                 icon={'book'}
                 iconColor={'#fff'}
                 onPress={() => null} />
       </View>
     )
+  }
+
+  getReadrec () {
+    let { readrec } = this.props
+    return 1
+    if (!readrec) return 1
+    let { chapter } = readrec
+    if (!chapter) return 1
+    return chapter.chapter_tab
   }
 
   renderBody () {

@@ -19,7 +19,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 import RowItem from './rowitem'
 
-class ClassifyContainer extends Component {
+class RankingContainer extends Component {
 
   constructor (props) {
     super(props)
@@ -36,7 +36,7 @@ class ClassifyContainer extends Component {
     let { Router } = this.props
     let { query } = Router
     //this.setState({classType: query.classtype, classId: query.class_id})
-    this.props.actions.getBookList(query.class_id)
+    this.props.actions.getBookList(query.tab)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -68,7 +68,7 @@ class ClassifyContainer extends Component {
     return (
       <RefreshControl ref={view => this.refreshControl = view}
                       refreshing={this.state.isRefreshing}
-                      onRefresh={() => this.props.actions.getBookList(query.class_id)} />
+                      onRefresh={() => this.props.actions.getBookList(query.tab)} />
     )
   }
 
@@ -76,13 +76,14 @@ class ClassifyContainer extends Component {
     let { pageSize, bookListSkip, bookListTotal, Router } = this.props
     let { query } = Router
     if (bookListTotal <= bookListSkip + pageSize) return
-    this.props.actions.searchBook(query.class_id, bookListSkip + pageSize)
+    this.props.actions.searchBook(query.tab, bookListSkip + pageSize)
   }
 
-  renderRow (data) {
+  renderRow (data, selectId, rowId) {
     let { Router } = this.props
     return (
       <RowItem data={data}
+               rowId={rowId}
                onPushByBook={id => Router.push(`book?id=${id}`)} />
     )
   }
@@ -116,12 +117,12 @@ class ClassifyContainer extends Component {
 
 function mapStateToProps (state) {
   return {
-    bookListPending: state.Classify.bookListPending,
-    bookListError: state.Classify.bookListError,
-    bookListSkip: state.Classify.bookListSkip,
-    bookList: state.Classify.bookList,
-    bookListTotal: state.Classify.bookListTotal,
-    pageSize: state.Classify.pageSize,
+    bookListPending: state.Ranking.bookListPending,
+    bookListError: state.Ranking.bookListError,
+    bookListSkip: state.Ranking.bookListSkip,
+    bookList: state.Ranking.bookList,
+    bookListTotal: state.Ranking.bookListTotal,
+    pageSize: state.Ranking.pageSize,
   }
 }
 
@@ -134,4 +135,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
     mapStateToProps, 
     mapDispatchToProps
-  )(ClassifyContainer)
+  )(RankingContainer)

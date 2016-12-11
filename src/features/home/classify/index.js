@@ -22,22 +22,22 @@ import _ from 'lodash'
 const Rankings = [
   {
     name: '人气榜',
-    link: 'ranking?tag=popular',
+    link: 'ranking?tab=popular',
     icon: require('../../../assets/images/bang1.png')
   },
   {
     name: '更新榜',
-    link: 'ranking?tag=update',
+    link: 'ranking?tab=update',
     icon: require('../../../assets/images/bang2.png')
   },
   {
     name: '月票榜',
-    link: 'ranking?tag=popular',
+    link: 'ranking?tab=popular',
     icon: require('../../../assets/images/bang3.png')
   },
   {
     name: '畅销榜',
-    link: 'ranking?tag=popular',
+    link: 'ranking?tab=popular',
     icon: require('../../../assets/images/bang4.png')
   },
 ]

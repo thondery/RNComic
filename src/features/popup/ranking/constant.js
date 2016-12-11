@@ -1,0 +1,5 @@
+'use strict';
+
+export const RANKING_BOOK_LIST_BEGIN            = 'RANKING_BOOK_LIST_BEGIN'
+export const RANKING_BOOK_LIST_FAILURE          = 'RANKING_BOOK_LIST_FAILURE'
+export const RANKING_BOOK_LIST_SUCCESS          = 'RANKING_BOOK_LIST_SUCCESS'

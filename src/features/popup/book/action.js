@@ -14,7 +14,7 @@ export const reCollect = shelfActions.reCollect
 export function getBook (book_id) {
   return dispatch => {
     dispatch(httpService.createAction(types.BOOK_GET_INFO_BEGIN, null))
-    setTimeout(() => {
+    //setTimeout(() => {
       return new Promise(async (resolve, reject) => {
         try {
           let token = getToken()
@@ -32,6 +32,6 @@ export function getBook (book_id) {
           reject(err)
         }
       }).catch(() => {})
-    }, 500)
+    //}, 500)
   }
 }
