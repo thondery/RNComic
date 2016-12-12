@@ -59,11 +59,25 @@ const Home = (state = initState, action) => {
       }
     }
     case types.HOME_DEFAULT_INFO_SUCCESS: {
+      let stateData = null
+      if (payload.data) {
+        let { banner, tuijian, renqi, update, tiaoman, fastrise, newbook, top5 } = payload.data
+        stateData = {
+          banner: banner.list,
+          tuijian: tuijian.list,
+          renqi: renqi.list,
+          update: update.list,
+          tiaoman: tiaoman.list,
+          fastrise: fastrise.list,
+          newbook: newbook.list,
+          top5: top5.list
+        }
+      }
       return {
         ...state,
         defaultInfoError: null,
         defaultInfoPending: false,
-        defaultInfo: payload.data
+        defaultInfo: stateData
       }
     }
     case types.HOME_DEFAULT_INFO_FAILURE: {

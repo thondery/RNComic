@@ -44,9 +44,9 @@ class ShelfContainer extends Component {
     return (
       <View style={styles.container}>
         <ScrollableTabView style={[styles.container]}
-                          initialPage={0}
-                          onChangeTab={this.changeTabHandle.bind(this)}
-                          renderTabBar={() => this.renderScrollableTabBar()}>
+                           initialPage={0}
+                           onChangeTab={this.changeTabHandle.bind(this)}
+                           renderTabBar={() => this.renderScrollableTabBar()}>
           <CollectTabView {...this.props}
                           tabLabel="收藏" 
                           style={styles.tabView} />

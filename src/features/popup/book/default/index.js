@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   StatusBar,
+  Platform,
   TouchableOpacity
 } from 'react-native'
 import styles, { width, height } from './style'
@@ -45,8 +46,10 @@ export default class DefaultContainer extends Component {
     return (
       <Image source={require('../../../../assets/images/2.jpg')}
              style={[styles.headerViewStyle]} >
-        <VibrancyView blurType="dark" 
-                      style={[styles.headerViewStyle]} />
+        {Platform.OS === 'ios' ? (
+          <VibrancyView blurType="dark" 
+                        style={[styles.headerViewStyle]} />
+        ) : null}
           {/*<StatusBar barStyle="light-content" />*/}
         <View style={styles.headerTopbarViewStyle}>
           <TouchableOpacity style={styles.goBackButtonStyle}

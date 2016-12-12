@@ -17,6 +17,20 @@ import RightMenu from './rightmenu'
 
 class HomeContainer extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      page: 0
+    }
+    this._scrollableTabView = null
+  }
+
+  componentDidMount () {
+    //this.setState({page: 1})
+    this._scrollableTabView.goToPage(1)
+    this._scrollableTabView._onChangeTab(0, 1)
+  }
+
   renderRightComponent () {
     return (
       <RightMenu {...this.props} />
@@ -38,15 +52,25 @@ class HomeContainer extends Component {
   render () {
     let { Router } = this.props
     return (
-      <ScrollableTabView style={styles.container}
-                         initialPage={0}
-                         renderTabBar={() => this.renderScrollableTabBar()}>
-        <ClassifyTabView tabLabel="分类" style={styles.tabView} Router={Router} />
-        <DefaultTabView tabLabel="推荐" style={styles.tabView}/>
-        <ScrollView tabLabel="动画" style={styles.tabView}/>
-        <TiaomanTabView tabLabel="条漫" style={styles.tabView}/>
-        <ScrollView tabLabel="VIP" style={styles.tabView}/>
-      </ScrollableTabView>
+      <View style={styles.container}>
+        <ScrollableTabView style={styles.container}
+                           ref={(scrollableTabView) => { this._scrollableTabView = scrollableTabView }}
+                           initialPage={0}
+                           //page={0}
+                           renderTabBar={() => this.renderScrollableTabBar()}
+                           >
+          <ClassifyTabView tabLabel="分类" 
+                           style={styles.tabView} 
+                           Router={Router} />
+          <DefaultTabView tabLabel="推荐" 
+                          style={styles.tabView} 
+                          Router={Router} />
+          <ScrollView tabLabel="动画" style={styles.tabView}/>
+          <TiaomanTabView tabLabel="条漫" 
+                          style={styles.tabView} />
+          <ScrollView tabLabel="VIP" style={styles.tabView}/>
+        </ScrollableTabView>
+      </View>
     )
   }
 
