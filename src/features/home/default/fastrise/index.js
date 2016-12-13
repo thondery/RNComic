@@ -54,7 +54,7 @@ export default class FastRise extends Component {
                 icon={'opencart'}
                 iconSize={10}
                 iconColor={'#999'}
-                onPress={() => null} />
+                onPress={() => Router.push(`recommend?tab=fastrise`, '上升最快')} />
           </View>
         </View>
         <View style={styles.bodyerViewStyle}>

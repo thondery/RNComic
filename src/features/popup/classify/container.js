@@ -76,7 +76,7 @@ class ClassifyContainer extends Component {
     let { pageSize, bookListSkip, bookListTotal, Router } = this.props
     let { query } = Router
     if (bookListTotal <= bookListSkip + pageSize) return
-    this.props.actions.searchBook(query.class_id, bookListSkip + pageSize)
+    this.props.actions.getBookList(query.class_id, bookListSkip + pageSize)
   }
 
   renderRow (data) {

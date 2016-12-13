@@ -11,6 +11,7 @@ import Book from './features/popup/book/reducer'
 import Reader from './features/popup/reader/reducer'
 import Classify from './features/popup/classify/reducer'
 import Ranking from './features/popup/ranking/reducer'
+import Recommend from './features/popup/recommend/reducer'
 
 export default combineReducers({
   navigation,
@@ -21,5 +22,6 @@ export default combineReducers({
   Book,
   Reader,
   Classify,
-  Ranking
+  Ranking,
+  Recommend
 })

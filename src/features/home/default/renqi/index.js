@@ -45,7 +45,7 @@ export default class Renqi extends Component {
                 icon={'opencart'}
                 iconSize={10}
                 iconColor={'#999'}
-                onPress={() => null} />
+                onPress={() => Router.push(`recommend?tab=renqi`, '人气炸子鸡')} />
           </View>
         </View>
         <View style={styles.bodyerViewStyle}>

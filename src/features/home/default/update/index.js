@@ -45,7 +45,7 @@ export default class Update extends Component {
                 icon={'opencart'}
                 iconSize={10}
                 iconColor={'#999'}
-                onPress={() => null} />
+                onPress={() => Router.push(`recommend?tab=update`, '今日我更新')} />
           </View>
         </View>
         <View style={styles.bodyerViewStyle}>

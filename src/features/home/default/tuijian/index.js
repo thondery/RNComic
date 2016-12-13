@@ -45,7 +45,7 @@ export default class Tuijian extends Component {
                 icon={'opencart'}
                 iconSize={10}
                 iconColor={'#999'}
-                onPress={() => null} />
+                onPress={() => Router.push(`recommend?tab=tuijian`, '小编无良推')} />
           </View>
         </View>
         <View style={styles.bodyerViewStyle}>

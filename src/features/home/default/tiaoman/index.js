@@ -45,7 +45,7 @@ export default class Tiaoman extends Component {
                 icon={'opencart'}
                 iconSize={10}
                 iconColor={'#999'}
-                onPress={() => null} />
+                onPress={() => Router.push(`recommend?tab=tiaoman`, '条漫每日君')} />
           </View>
         </View>
         <View style={styles.bodyerViewStyle}>

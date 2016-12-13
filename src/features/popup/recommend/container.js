@@ -19,7 +19,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 import RowItem from './rowitem'
 
-class RankingContainer extends Component {
+class RecommendContainer extends Component {
 
   constructor (props) {
     super(props)
@@ -79,11 +79,10 @@ class RankingContainer extends Component {
     this.props.actions.getBookList(query.tab, bookListSkip + pageSize)
   }
 
-  renderRow (data, selectId, rowId) {
+  renderRow (data) {
     let { Router } = this.props
     return (
       <RowItem data={data}
-               rowId={rowId}
                onPushByBook={id => Router.push(`book?id=${id}`)} />
     )
   }
@@ -117,12 +116,12 @@ class RankingContainer extends Component {
 
 function mapStateToProps (state) {
   return {
-    bookListPending: state.Ranking.bookListPending,
-    bookListError: state.Ranking.bookListError,
-    bookListSkip: state.Ranking.bookListSkip,
-    bookList: state.Ranking.bookList,
-    bookListTotal: state.Ranking.bookListTotal,
-    pageSize: state.Ranking.pageSize,
+    bookListPending: state.Recommend.bookListPending,
+    bookListError: state.Recommend.bookListError,
+    bookListSkip: state.Recommend.bookListSkip,
+    bookList: state.Recommend.bookList,
+    bookListTotal: state.Recommend.bookListTotal,
+    pageSize: state.Recommend.pageSize,
   }
 }
 
@@ -135,4 +134,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
     mapStateToProps, 
     mapDispatchToProps
-  )(RankingContainer)
+  )(RecommendContainer)

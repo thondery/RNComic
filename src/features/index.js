@@ -11,6 +11,7 @@ import BookNavigator from './popup/book'
 import ReaderNavigator from './popup/reader'
 import ClassifyNavigator from './popup/classify'
 import RankingNavigator from './popup/ranking'
+import RecommendNavigator from './popup/recommend'
 
 export {
   HomeNavigator,
@@ -23,5 +24,6 @@ export {
   BookNavigator,
   ReaderNavigator,
   ClassifyNavigator,
-  RankingNavigator
+  RankingNavigator,
+  RecommendNavigator
 }
