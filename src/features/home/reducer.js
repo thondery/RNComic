@@ -95,11 +95,21 @@ const Home = (state = initState, action) => {
       }
     }
     case types.HOME_TIAOMAN_INFO_SUCCESS: {
+      let stateData = null
+      if (payload.data) {
+        let { update_tm, tuijian_tm, fensi_tm, weekrank_tm } = payload.data
+        stateData = {
+          update: update_tm.list,
+          tuijian: tuijian_tm.list,
+          fensi: fensi_tm.list,
+          weekrank: weekrank_tm.list
+        }
+      }
       return {
         ...state,
         tiaomanInfoError: null,
         tiaomanInfoPending: false,
-        tiaomanInfo: payload.data
+        tiaomanInfo: stateData
       }
     }
     case types.HOME_TIAOMAN_INFO_FAILURE: {

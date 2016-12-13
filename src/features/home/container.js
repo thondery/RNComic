@@ -67,7 +67,8 @@ class HomeContainer extends Component {
                           Router={Router} />
           <ScrollView tabLabel="动画" style={styles.tabView}/>
           <TiaomanTabView tabLabel="条漫" 
-                          style={styles.tabView} />
+                          style={styles.tabView}
+                          Router={Router} />
           <ScrollView tabLabel="VIP" style={styles.tabView}/>
         </ScrollableTabView>
       </View>

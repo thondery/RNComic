@@ -11,7 +11,11 @@ import {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../action'
-import styles from './style'
+import styles, { width, height } from './style'
+import Update from './update'
+import Tuijian from './tuijian'
+import Fensi from './fensi'
+import WeekRank from './weekrank'
 
 class TiaomanTabView extends Component {
 
@@ -35,12 +39,43 @@ class TiaomanTabView extends Component {
     )
   }
 
+  renderUpdate () {
+    let { tiaomanInfo, Router } = this.props
+    return tiaomanInfo && tiaomanInfo.update ? (
+      <Update data={tiaomanInfo.update} Router={Router} />
+    ) : null
+  }
+
+  renderTuijian () {
+    let { tiaomanInfo, Router } = this.props
+    return tiaomanInfo && tiaomanInfo.tuijian ? (
+      <Tuijian data={tiaomanInfo.tuijian} Router={Router} />
+    ) : null
+  }
+
+  renderFensi () {
+    let { tiaomanInfo, Router } = this.props
+    return tiaomanInfo && tiaomanInfo.fensi ? (
+      <Fensi data={tiaomanInfo.fensi} Router={Router} />
+    ) : null
+  }
+
+  renderWeekRank () {
+    let { tiaomanInfo, Router } = this.props
+    return tiaomanInfo && tiaomanInfo.weekrank ? (
+      <WeekRank data={tiaomanInfo.weekrank} Router={Router} />
+    ) : null
+  }
+
   render () {
     let { style } = this.props
     return (
       <ScrollView style={[styles.container, style]}
                   refreshControl={this.renderRefreshControl()}>
-        <Text>fkdkdkf</Text>
+        {this.renderUpdate()}
+        {this.renderTuijian()}
+        {this.renderFensi()}
+        {this.renderWeekRank()}
       </ScrollView>
     )
   }
