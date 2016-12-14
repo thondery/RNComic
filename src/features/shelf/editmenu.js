@@ -36,23 +36,23 @@ class EditMenuView extends Component {
   }
 
   render () {
-    let { isOpen, tabLabel, selectItem } = this.props
+    let { isOpen, tabLabel, selectItem, counts, onSelectAll, onRemoveItem } = this.props
     return (
       <Animated.View style={[styles.container, {bottom: this.state.bottomVaule}]}>
         <Button style={styles.buttonStyle}
-                label={'全选'}
+                label={selectItem.length >= counts ? '取消全选' : '全选'}
                 labelStyle={styles.buttonTextStyle}
-                icon={'check-square-o'}
+                icon={selectItem.length >= counts ? 'times-circle-o' : 'check-square-o'}
                 iconColor={'#85b200'}
                 iconSize={24}
-                />
+                onPress={() => onSelectAll(!(selectItem.length >= counts))} />
         <Button style={[styles.buttonStyle, {borderLeftWidth: 1}]}
                 label={'删除'}
                 labelStyle={styles.buttonTextStyle}
                 icon={'trash-o' || 'times-circle-o'}
                 iconColor={selectItem.length > 0 ? '#ffa500' : '#ccc'}
                 iconSize={24}
-                />
+                onPress={() => onRemoveItem()} />
       </Animated.View>
     )
   }

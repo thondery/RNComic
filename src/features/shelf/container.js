@@ -16,6 +16,7 @@ import styles, { width, height } from './style'
 import RightMenuView from './rightmenu'
 import EditMenuView from './editmenu'
 import CollectTabView from './collect'
+import _ from 'lodash'
 
 const tabNames = ['collect', 'readrec', 'download']
 
@@ -40,7 +41,7 @@ class ShelfContainer extends Component {
   }
 
   render () {
-    let { editState } = this.props
+    let { editState, Router } = this.props
     return (
       <View style={styles.container}>
         <ScrollableTabView style={[styles.container]}
@@ -49,28 +50,65 @@ class ShelfContainer extends Component {
                            renderTabBar={() => this.renderScrollableTabBar()}>
           <CollectTabView {...this.props}
                           tabLabel="收藏" 
-                          style={styles.tabView} />
+                          style={styles.tabView}
+                           />
           <ScrollView tabLabel="历史" style={styles.tabView}/>
           <ScrollView tabLabel="下载" style={styles.tabView}/>
         </ScrollableTabView>
-        <EditMenuView {...editState} />
+        <EditMenuView {...editState}
+                      onSelectAll={this.onSelectAll.bind(this)}
+                      onRemoveItem={this.onRemoveItem.bind(this)} />
       </View>
     )
+  }
+
+  onSelectAll (isTrue) {
+    let { editState, collectList, readrecList } = this.props
+    if (isTrue) {
+      let _selectItem = []
+      switch (editState.tabLabel) {
+        case 'collect':
+          _selectItem = _.map(_.map(collectList, 'collect_book'), '_id')
+          break
+        case 'readrec':
+          _selectItem = []
+          break
+        default:
+          break
+      }
+      this.props.actions.selectItemByEditMode(_selectItem)
+    }
+    else {
+      this.props.actions.selectItemByEditMode([])
+    }
+  }
+
+  onRemoveItem () {
+    let { editState } = this.props
+    switch (editState.tabLabel) {
+        case 'collect':
+          console.log(editState.selectItem)
+          this.props.actions.removeCollect(editState.selectItem)
+          break
+        case 'readrec':
+          
+          break
+        default:
+          break
+      }
   }
 
   changeTabHandle (evt) {
     let tabLabel = tabNames[evt.i]
     this.props.actions.initEditMode(tabLabel)
   }
-
-  pressHandle () {
-    this.props.Router.push('search', '搜索')
-  }
 }
 
 function mapStateToProps (state) {
   return {
-    editState: state.Shelf.editState
+    editState: state.Shelf.editState,
+    collectList: state.Shelf.collectList,
+    readrecList: state.Shelf.readrecList,
   }
 }
 
