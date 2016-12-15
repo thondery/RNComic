@@ -16,11 +16,32 @@ import styles, { width, height } from './style'
 import RightMenuView from './rightmenu'
 import EditMenuView from './editmenu'
 import CollectTabView from './collect'
+import ReadrecTabView from './readrec'
 import _ from 'lodash'
 
 const tabNames = ['collect', 'readrec', 'download']
 
 class ShelfContainer extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      
+    }
+    this._scrollableTabView = null
+  }
+
+  componentDidMount () {
+    //this._scrollableTabView.goToPage(0)
+    //this._scrollableTabView._onChangeTab(0, 0)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    let { selectedTab } = nextProps
+    if (selectedTab === 'ShelfTab' && selectedTab !== this.props.selectedTab) {
+      this.props.actions.initEditMode(null)
+    }
+  }
 
   renderRightComponent () {
     return (
@@ -45,14 +66,18 @@ class ShelfContainer extends Component {
     return (
       <View style={styles.container}>
         <ScrollableTabView style={[styles.container]}
+                           ref={(scrollableTabView) => { this._scrollableTabView = scrollableTabView }}
                            initialPage={0}
                            onChangeTab={this.changeTabHandle.bind(this)}
                            renderTabBar={() => this.renderScrollableTabBar()}>
           <CollectTabView {...this.props}
-                          tabLabel="收藏" 
+                          tabLabel={'收藏'} 
                           style={styles.tabView}
                            />
-          <ScrollView tabLabel="历史" style={styles.tabView}/>
+          <ReadrecTabView {...this.props} 
+                          tabLabel={'历史'} 
+                          style={styles.tabView}
+                          />
           <ScrollView tabLabel="下载" style={styles.tabView}/>
         </ScrollableTabView>
         <EditMenuView {...editState}
@@ -71,7 +96,7 @@ class ShelfContainer extends Component {
           _selectItem = _.map(_.map(collectList, 'collect_book'), '_id')
           break
         case 'readrec':
-          _selectItem = []
+          _selectItem = _.map(_.map(readrecList, 'read_book'), '_id')
           break
         default:
           break
@@ -87,11 +112,10 @@ class ShelfContainer extends Component {
     let { editState } = this.props
     switch (editState.tabLabel) {
         case 'collect':
-          console.log(editState.selectItem)
           this.props.actions.removeCollect(editState.selectItem)
           break
         case 'readrec':
-          
+          this.props.actions.removeReadrec(editState.selectItem)
           break
         default:
           break
@@ -109,6 +133,7 @@ function mapStateToProps (state) {
     editState: state.Shelf.editState,
     collectList: state.Shelf.collectList,
     readrecList: state.Shelf.readrecList,
+    selectedTab: state.navigation.tabbarState.selectedTab
   }
 }
 

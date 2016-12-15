@@ -55,7 +55,7 @@ class BookContainer extends Component {
   }
 
   render () {
-    let { classType, getBookPending, getBookError, getBookData, bookCollect, useCollect, bookReadrec, Router } = this.props
+    let { classType, getBookPending, getBookError, getBookData, bookCollect, useCollect, bookReadrec, Router, readrecInfo } = this.props
     if (getBookPending || getBookError) {
       return (
         <View style={styles.container}>
@@ -63,12 +63,13 @@ class BookContainer extends Component {
         </View>
       )
     }
+    
     switch (classType) {
       case 0: {
         return getBookData ? (
           <DefaultContainer bookData={getBookData}
                             collect={useCollect === -1 ? bookCollect : useCollect}
-                            readrec={bookReadrec}
+                            readrec={readrecInfo && readrecInfo.read_book === getBookData._id ? readrecInfo : bookReadrec}
                             onCollect={this.onCollectHandle.bind(this)}
                             Router={Router} />
         ) : null
@@ -128,6 +129,7 @@ function mapStateToProps (state) {
     bookCollect: state.Book.bookCollect,
     useCollect: state.Shelf.useCollect,
     bookReadrec: state.Book.bookReadrec,
+    readrecInfo: state.Shelf.readrecInfo,
     classType: state.Book.classType,
     auth: state.Root.auth
   }

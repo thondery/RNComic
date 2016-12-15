@@ -23,6 +23,7 @@ import { ScrollableTabBar } from 'kn-react-native-views'
 import DetailTabView from './detail'
 import ChapterTabView from './chapter'
 import TopicTabView from './topic'
+import _ from 'lodash'
 
 const initBookData = {
   _id: '',
@@ -92,27 +93,31 @@ export default class DefaultContainer extends Component {
   renderButtonLayer () {
     let { Router, bookData, readrec } = this.props
     bookData = {...initBookData, ...bookData}
+    let _readrec = this.getReadrec(bookData, readrec)
     return (
       <View style={styles.buttonLayerView}>
         <Button style={styles.downloadButtonStyle}
                 label={'下载'}
                 onPress={() => null} />
         <Button style={styles.readRecButtonStyle}
-                label={readrec && readrec.chapter ?  `续看${this.getReadrec()}话` : '开始阅读'}
+                label={readrec && readrec.chapter && readrec.read_book === bookData._id ?  `续看${_readrec.chapter_tab}话` : '开始阅读'}
                 icon={'book'}
                 iconColor={'#fff'}
-                onPress={() => null} />
+                onPress={() => bookData.chapters.length > 0 ?  Router.push(`reader?id=${_readrec._id}`) : null} />
       </View>
     )
   }
 
-  getReadrec () {
-    let { readrec } = this.props
-    return 1
-    if (!readrec) return 1
-    let { chapter } = readrec
-    if (!chapter) return 1
-    return chapter.chapter_tab
+  getReadrec (bookData, readrec) {
+    if (bookData.chapters.length <= 0) {
+      return null
+    }
+    let firstChapter = _.nth(bookData.chapters, -1)
+    if (!readrec) return firstChapter
+    let { chapter, read_book } = readrec
+    if (!chapter) return firstChapter
+    if (read_book !== bookData._id) return firstChapter
+    return chapter
   }
 
   renderBody () {

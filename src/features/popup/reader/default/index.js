@@ -26,29 +26,33 @@ export default class DefaultContainer extends Component {
 		this.state = {
 			toolBarOpen: true,
       pageIndex: 0,
-      inSlider: false
+      inSlider: false,
+      isSet: false
 		}
     this._swiperView = null
-    this._ltr = null
-    this._lts = 5
   }
 
   componentDidMount () {
     //this.props.actions.showToolBar(true)
     //this.autoHideToolBar()
-    
+    let { readrec } = this.props
+    //this._swiperView && readrec && this._swiperView.scrollBy(readrec.lastpage, false)
+    this._swiperView && readrec && this.gotoPageChange(readrec.lastpage)
+    console.log(readrec)
   }
 
   componentWillReceiveProps (nextProps) {
-    let { pageIndex } = nextProps
-    if (pageIndex !== this.state.pageIndex) {
-      //this._swiperView.scrollBy(1, false)
+    let { pageIndex, readrec, chapterData } = nextProps
+    //console.log(nextProps)
+    if (chapterData && this.state.chapterData && chapterData._id !== this.state.chapterData._id) {
+      console.log(chapterData)
+      //this._swiperView && readrec && this.gotoPageChange(readrec.lastpage)
     }
     
   }
 
   componentWillUnmount () {
-    
+    this._swiperView = null
   }
 
   renderBody () {
@@ -117,12 +121,12 @@ export default class DefaultContainer extends Component {
       return
     }
     if (inSlider) {
-      this.setState({inSlider: false, pageIndex: state.index})
+      this.setState({inSlider: false, pageIndex: state.index, isSet: true})
     }
     else {
-      this.setState({toolBarOpen: false, pageIndex: state.index})
+      this.setState({toolBarOpen: false, pageIndex: state.index, isSet: true})
     }
-    
+    this.props.onPageChange(state.index)
   }
 
   showTools () {
@@ -155,7 +159,7 @@ export default class DefaultContainer extends Component {
   }
 
   render () {
-    let { chapterData, Router, prevChapter, nextChapter } = this.props
+    let { chapterData, Router, prevChapter, nextChapter, pageIndex, readrec } = this.props
     //let { chaptername, chapter_tab } = chapterData
     return chapterData ? (
       <View style={styles.container}>
@@ -165,7 +169,7 @@ export default class DefaultContainer extends Component {
                  title={`第${chapterData.chapter_tab}话 － ${chapterData.chaptername}`}
                  isOpen={this.state.toolBarOpen} />
         <FootBar Router={Router}
-                 pageIndex={this.state.pageIndex}
+                 pageIndex={this.state.isSet || !readrec ? this.state.pageIndex : readrec.lastpage}
                  maxPageIndex={chapterData.chapter_img.length - 1}
                  gotoPageChange={this.gotoPageChange.bind(this)}
                  prevChapter={() => prevChapter()}

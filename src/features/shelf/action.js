@@ -29,8 +29,8 @@ export function removeCollect(selectitem) {
     dispatch(httpService.createAction(types.SHELF_MENU_EDITMODE_REMOVE_BEGIN, null))
     return new Promise(async (resolve, reject) => {
       try {
-        let res = await storageService.getItem('auth')
-        let token = res && res.token_key || undefined
+        //let res = await storageService.getItem('auth')
+        let token = getToken()
         let ret = await httpService.post('/book/re_collect', {
                     accesstoken: token,
                     book_id: selectitem,
@@ -54,8 +54,8 @@ export function getCollectList () {
     dispatch(httpService.createAction(types.SHELF_COLLECT_LIST_BEGIN, null))
     return new Promise(async (resolve, reject) => {
       try {
-        let res = await storageService.getItem('auth')
-        let token = res && res.token_key || undefined
+        //let res = await storageService.getItem('auth')
+        let token = getToken()
         let ret = await httpService.get('/book/collect', {
                     accesstoken: token
                   })
@@ -128,5 +128,75 @@ export function collectInit() {
 }
 
 export function getReadrecList () {
+  return dispatch => {
+    dispatch(httpService.createAction(types.SHELF_READREC_LIST_BEGIN, null))
+    return new Promise(async (resolve, reject) => {
+      try {
+        //let res = await storageService.getItem('auth')
+        let token = getToken()
+        let ret = await httpService.get('/book/readrec', {
+                    accesstoken: token
+                  })
+        if (_.isError(ret)) {
+          throw ret
+        }
+        dispatch(httpService.createAction(types.SHELF_READREC_LIST_SUCCESS, ret))
+        resolve(ret)
+      }
+      catch (err) {
+        dispatch(httpService.createAction(types.SHELF_READREC_LIST_FAILURE, err))
+        reject(err)
+      }
+    }).catch(() => {})
+  }
+}
 
+export function removeReadrec (selectitem) {
+  return dispatch => {
+    dispatch(httpService.createAction(types.SHELF_MENU_EDITMODE_REMOVE_BEGIN, null))
+    return new Promise(async (resolve, reject) => {
+      try {
+        //let res = await storageService.getItem('auth')
+        let token = getToken()
+        let ret = await httpService.post('/book/re_readrec', {
+                    accesstoken: token,
+                    book_id: selectitem,
+                  })
+        if (_.isError(ret)) {
+          throw ret
+        }
+        dispatch(httpService.createAction(types.SHELF_MENU_EDITMODE_REMOVE_SUCCESS, ret))
+        resolve(ret)
+      }
+      catch (err) {
+        dispatch(httpService.createAction(types.SHELF_MENU_EDITMODE_REMOVE_FAILURE, err))
+        reject(err)
+      }
+    }).catch(() => {})
+  }
+}
+
+export function updateReadrec (book_id, chapter_id, lastpage) {
+  return dispatch => {
+    dispatch(httpService.createAction(types.SHELF_READREC_UPDATE_BEGIN, null))
+    return new Promise(async (resolve, reject) => {
+      try {
+        let token = getToken()
+        let ret = await httpService.post(`/book/up_readrec/${book_id}`, {
+                    accesstoken: token,
+                    chapter: chapter_id,
+                    lastpage: lastpage
+                  })
+        if (_.isError(ret)) {
+          throw ret
+        }
+        dispatch(httpService.createAction(types.SHELF_READREC_UPDATE_SUCCESS, ret))
+        resolve(ret)
+      }
+      catch (err) {
+        dispatch(httpService.createAction(types.SHELF_READREC_UPDATE_FAILURE, err))
+        reject(err)
+      }
+    }).catch(() => {})
+  }
 }

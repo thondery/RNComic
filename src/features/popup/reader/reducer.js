@@ -39,7 +39,7 @@ const Reader = (state = initState, action) => {
         let book = chapter.inbook
         stateData = {
           chapterData: chapter,
-          bookReadrec: readrec,
+          bookReadrec: payload.isRec ? readrec : { lastpage: 0 },
           classType: book.classify.classtype
         }
       }

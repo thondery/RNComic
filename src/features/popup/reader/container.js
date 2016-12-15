@@ -29,7 +29,9 @@ class ReaderContainer extends Component {
     this.state = {
       disable: false,
       pageIndex: 0,
-      outRange: false
+      outRange: false,
+      rec_page: 0,
+      setPage: false
     }
   }
 
@@ -55,10 +57,13 @@ class ReaderContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    let { getChapterError, auth } = nextProps
+    let { getChapterError, auth, bookReadrec, chapterData } = nextProps
     let { Router } = this.props
     if (getChapterError) {
       this.showToast(_.isError(getChapterError) ? '无法连接到服务器，请稍后再试' : getChapterError.message)
+    }
+    if (chapterData && chapterData._id === Router.query.id && this.state.setPage) {
+      //this.setState({pageIndex: bookReadrec.lastpage, setPage: false})
     }
   }
 
@@ -68,6 +73,12 @@ class ReaderContainer extends Component {
       'change',
       this._handleConnectionInfoChange.bind(this)
     )
+    console.log(this.props.chapterData)
+    console.log(this.state.rec_page)
+    let { _id, inbook } = this.props.chapterData
+    if (this.props.auth) {
+      this.props.actions.updateReadrec(inbook._id, _id, this.state.rec_page)
+    }
   }
 
   _handleConnectionInfoChange (connectionInfo) {
@@ -90,12 +101,13 @@ class ReaderContainer extends Component {
           <View style={styles.container}>
             <DefaultContainer chapterData={chapterData}
                               //collect={useCollect === -1 ? bookCollect : useCollect}
-                              //readrec={bookReadrec}
+                              readrec={this.state.setPage ? {lastpage: 0} : bookReadrec}
                               //onCollect={this.onCollectHandle.bind(this)}
                               pageIndex={this.state.pageIndex}
                               connectionInfo={connectionInfo}
                               prevChapter={this.prevChapterChange.bind(this)}
                               nextChapter={this.nextChapterChange.bind(this)}
+                              onPageChange={this.onPageChange.bind(this)}
                               Router={Router} />
             { this.state.outRange ?
               <Tips isOpen={this.state.outRange}
@@ -123,13 +135,13 @@ class ReaderContainer extends Component {
         //没有上一章了～
         this.setState({outRange: true, pageIndex: index})
         let ltr = setTimeout(function() {
-          that.setState({outRange: false})
+          that.setState({outRange: false, setPage: true})
           clearTimeout(ltr)
           ltr = null
         }, 1500)
         return
       }
-      this.props.actions.getChapter(chapters[index - 1]._id)
+      this.props.actions.getChapter(chapters[index - 1]._id, false)
     }
   }
 
@@ -143,14 +155,23 @@ class ReaderContainer extends Component {
         //没有下一章了～
         this.setState({outRange: true, pageIndex: index})
         let ltr = setTimeout(function() {
-          that.setState({outRange: false})
+          that.setState({outRange: false, setPage: true})
           clearTimeout(ltr)
           ltr = null
         }, 1500)
         return
       }
-      this.props.actions.getChapter(chapters[index + 1]._id)
+      this.props.actions.getChapter(chapters[index + 1]._id, false)
     }
+  }
+
+  onPageChange (index) {
+    this.setState({rec_page: index})
+
+    /*let { _id, inbook } = this.props.chapterData
+    if (this.props.auth) {
+      this.props.actions.updateReadrec(inbook._id, _id, index)
+    }*/
   }
 
   showToast (message, disable = false) {
@@ -184,6 +205,7 @@ function mapStateToProps (state) {
     //bookCollect: state.Reader.bookCollect,
     bookReadrec: state.Reader.bookReadrec,
     classType: state.Reader.classType,
+    readrecInfo: state.Shelf.readrecInfo,
     //useCollect: state.Shelf.useCollect,
     connectionInfo: state.Reader.connectionInfo,
     auth: state.Root.auth

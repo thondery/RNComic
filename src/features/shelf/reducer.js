@@ -17,6 +17,10 @@ const initState = {
   collectError: null,
   useCollect: -1,
   collectUpdate: false,
+  readrecUpdate: false,
+  readrecPending: false,
+  readrecError: null,
+  readrecInfo: null,
   editState: {
     tabLabel: 'collect',
     isOpen: false,
@@ -40,7 +44,8 @@ const Shelf = (state = initState, action) => {
     }
     case types.SHELF_MENU_EDITMODE_INIT: {
       let counts = 0
-      switch (payload) {
+      let tabLabel = payload ? payload : state.editState.tabLabel
+      switch (tabLabel) {
         case 'collect':
           counts = state.collectListTotal
           break
@@ -52,7 +57,7 @@ const Shelf = (state = initState, action) => {
       return {
         ...state,
         editState: {
-          tabLabel: payload,
+          tabLabel: tabLabel,
           isOpen: false,
           selectItem: [],
           counts: counts
@@ -102,20 +107,88 @@ const Shelf = (state = initState, action) => {
         collectListError: error
       }
     }
-    case types.SHELF_MENU_EDITMODE_REMOVE_BEGIN: {
+    case types.SHELF_READREC_LIST_BEGIN: {
       return {
         ...state,
-        collectListPending: true,
-        collectListError: null,
+        readrecListPending: true,
+        readrecListError: null,
+        readrecUpdate: false,
+        editState: {
+          ...state.editState,
+          isOpen: false,
+          selectItem: [],
+          counts: 0
+        }
+      }
+    }
+    case types.SHELF_READREC_LIST_SUCCESS: {
+      return {
+        ...state,
+        readrecListPending: false,
+        readrecListError: null,
+        readrecList: payload.data.list,
+        readrecListTotal: payload.data.counts,
+        editState: {
+          ...state.editState,
+          counts: payload.data.counts
+        }
+      }
+    }
+    case types.SHELF_READREC_LIST_FAILURE: {
+      return {
+        ...state,
+        readrecListPending: false,
+        readrecListError: error
+      }
+    }
+    case types.SHELF_MENU_EDITMODE_REMOVE_BEGIN: {
+      let tabLabel = state.editState.tabLabel
+      let stateData = null
+      switch (tabLabel) {
+        case 'collect':
+          stateData = {
+            collectListPending: true,
+            collectListError: null
+          }
+          break
+        case 'readrec':
+          stateData = {
+            readrecListPending: true,
+            readrecListError: null
+          }
+        default:
+          break
+      }
+      return {
+        ...state,
+        ...stateData
       }
     }
     case types.SHELF_MENU_EDITMODE_REMOVE_SUCCESS: {
+      let tabLabel = state.editState.tabLabel
+      let stateData = null
+      switch (tabLabel) {
+        case 'collect':
+          stateData = {
+            collectListPending: false,
+            collectListError: null,
+            collectList: payload.data.list,
+            collectListTotal: payload.data.counts,
+          }
+          break
+        case 'readrec':
+          stateData = {
+            readrecListPending: false,
+            readrecListError: null,
+            readrecList: payload.data.list,
+            readrecListTotal: payload.data.counts,
+          }
+        default:
+          break
+      }
       return {
         ...state,
-        collectListPending: false,
-        collectListError: null,
-        collectList: payload.data.list,
-        collectListTotal: payload.data.counts,
+        ...stateData,
         editState: {
           ...state.editState,
           isOpen: false,
@@ -125,10 +198,26 @@ const Shelf = (state = initState, action) => {
       }
     }
     case types.SHELF_MENU_EDITMODE_REMOVE_FAILURE: {
+      let tabLabel = state.editState.tabLabel
+      let stateData = null
+      switch (tabLabel) {
+        case 'collect':
+          stateData = {
+            collectListPending: false,
+            collectListError: error
+          }
+          break
+        case 'readrec':
+          stateData = {
+            readrecListPending: false,
+            readrecListError: error
+          }
+        default:
+          break
+      }
       return {
         ...state,
-        collectListPending: false,
-        collectListError: error
+        ...stateData
       }
     }
     case types.SHELF_COLLECT_ADD_BEGIN: {
@@ -185,6 +274,31 @@ const Shelf = (state = initState, action) => {
         collectPending: false,
         collectError: null,
         useCollect: -1
+      }
+    }
+    case types.SHELF_READREC_UPDATE_BEGIN: {
+      return {
+        ...state,
+        readrecUpdate: false,
+        readrecPending: false,
+        readrecError: null,
+        //readrecInfo: null
+      }
+    }
+    case types.SHELF_READREC_UPDATE_SUCCESS: {
+      return {
+        ...state,
+        readrecUpdate: true,
+        readrecPending: false,
+        readrecError: null,
+        readrecInfo: payload.data.readrec
+      }
+    }
+    case types.SHELF_READREC_UPDATE_FAILURE: {
+      return {
+        ...state,
+        readrecPending: false,
+        readrecError: error
       }
     }
     default: {

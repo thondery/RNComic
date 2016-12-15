@@ -37,9 +37,10 @@ const Book = (state = initState, action) => {
       }
       else {
         let book = payload.data.book
+        let readrec = _.has(payload.data.readrec, 'chapter') ? payload.data.readrec : null
         stateData = {
           bookCollect: payload.data.collect,
-          bookReadrec: payload.data.readrec,
+          bookReadrec: readrec,
           getBookData: payload.data.book,
           classType: book.classify.classtype
         }

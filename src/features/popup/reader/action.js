@@ -10,8 +10,9 @@ import * as shelfActions from '../../shelf/action'
 export const collectInit = shelfActions.collectInit
 export const collect = shelfActions.collect
 export const reCollect = shelfActions.reCollect
+export const updateReadrec = shelfActions.updateReadrec
 
-export function getChapter (book_id) {
+export function getChapter (book_id, isRec = true) {
   return dispatch => {
     dispatch(httpService.createAction(types.READER_GET_INFO_BEGIN, null))
     setTimeout(() => {
@@ -24,6 +25,7 @@ export function getChapter (book_id) {
           if (_.isError(ret)) {
             throw ret
           }
+          ret.isRec = isRec
           dispatch(httpService.createAction(types.READER_GET_INFO_SUCCESS, ret))
           resolve(ret)
         }
